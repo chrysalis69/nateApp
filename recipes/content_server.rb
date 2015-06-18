@@ -1,3 +1,5 @@
+node.set['apache']['listen_ports'] = [80,8080]
+
 include_recipe "apache2"
 include_recipe "apache2::mod_cgi"
 
@@ -26,3 +28,16 @@ end
 service "soffice" do
   action [:enable, :start]
 end
+
+#create content dir
+directory "#{node['nateApp']['content_root']}" do
+  action :create
+  owner "#{node['apache']['user']}"
+  group "#{node['apache']['group']}"
+  mode '0755'
+  recursive true
+end
+
+#TODO: NFS
+
+

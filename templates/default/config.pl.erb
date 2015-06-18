@@ -1,0 +1,7 @@
+#!/usr/bin/perl
+use strict;
+
+$database_name = "dbi::mysql::<%= node['nateApp']['database']['dbname'] %>"
+$database_username = "<%= node['nateApp']['database']['username'] %>"
+$database_password = "<%= node['nateApp']['database']['password'] %>"
+$database_host = "<%= node['nateApp']['database']['host'] %>"

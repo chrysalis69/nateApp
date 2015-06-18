@@ -1,0 +1,12 @@
+CREATE DATABASE <%= node['nateApp']['database']['dbname'] %>;
+use <%= node['nateApp']['database']['dbname'] %>;
+
+CREATE TABLE presenters
+(
+  id       integer auto_increment not null,
+  name     varchar(255) not null,
+  email    varchar(255) not null,
+  primary key (id)
+);
+
+grant all on <%= node['nateApp']['database']['dbname'] %>.* to '<%= node['nateApp']['database']['username'] %>'@'%' identified by '<%= node['nateApp']['database']['password'] %>';
