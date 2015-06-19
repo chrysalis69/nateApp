@@ -1,5 +1,8 @@
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
+include_recipe "apache2::mod_proxy"
+include_recipe "apache2::mod_proxy_balancer"
+include_recipe "apache2::mod_rewrite"
 
 include_recipe "php::module_mysql"
 
@@ -11,6 +14,9 @@ end
 # create apache config
 template "#{node['apache']['dir']}/sites-available/#{node['nateApp']['config']}.conf" do
   source "apache.conf.erb"
+  variables({
+    :content_servers => node['nateApp']['content_servers']
+  })
   notifies :restart, "service[apache2]"
 end
 

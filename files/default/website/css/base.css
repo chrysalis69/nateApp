@@ -1,8 +1,9 @@
 body {
   padding-top: 50px;
+  background-image: linear-gradient(to bottom, white, #EFEFEF);
 }
 .starter-template {
-  padding: 40px 15px;
+  padding: 20px 15px;
   text-align: center;
 }
 
@@ -12,5 +13,13 @@ body {
 }
 
 .large-logo {
- padding: 0px 20px;
+  padding: 0px 20px;
+}
+
+.presenter {
+  text-align: center;
+}
+
+.panel-presenter {
+  margin-top: 20px;
 }

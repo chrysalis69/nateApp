@@ -10,3 +10,4 @@ CREATE TABLE presenters
 );
 
 grant all on <%= node['nateApp']['database']['dbname'] %>.* to '<%= node['nateApp']['database']['username'] %>'@'%' identified by '<%= node['nateApp']['database']['password'] %>';
+grant all on <%= node['nateApp']['database']['dbname'] %>.* to '<%= node['nateApp']['database']['username'] %>'@'localhost' identified by '<%= node['nateApp']['database']['password'] %>';

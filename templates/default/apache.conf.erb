@@ -14,6 +14,14 @@
                 allow from all
         </Directory>
 
+
+        <Proxy balancer://contentservers>
+<% @content_servers.each do |content_server| %>
+<%= "                BalancerMember http://#{content_server}:8080" %>
+<% end %>
+        </Proxy>
+
+
         ErrorLog <%= node['apache']['log_dir'] %>/error.log
 
         LogLevel warn

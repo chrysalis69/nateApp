@@ -1,5 +1,16 @@
-<H1>NateApp</H1>
-
 <?php
+$servername = "<%= node['nateApp']['database']['host'] %>";
+$username = "<%= node['nateApp']['database']['username'] %>";
+$password = "<%= node['nateApp']['database']['password'] %>";
+$database = "<%= node['nateApp']['database']['dbname'] %>";
+$port = 3306;
 
+$grav_preurl = "http://www.gravatar.com/avatar/";
+$grav_posturl = "?s=140&d=mm&r=pg";
+
+$conn = new mysqli($servername, $username, $password, $database, $port);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 ?>

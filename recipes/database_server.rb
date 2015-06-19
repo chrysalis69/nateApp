@@ -17,12 +17,15 @@ template "#{node['nateApp']['schema_root']}/schema.sql" do
   source "schema.sql.erb"
 end
 
-execute "Load Demo Data" do
-  action :nothing  
+execute "Load_Demo_Data" do
+  action :nothing
+  command "mysql -S /var/run/mysql-nateApp/mysqld.sock -u #{node['nateApp']['database']['username']} -p#{node['nateApp']['database']['password']} #{node['nateApp']['database']['dbname']} < #{node['nateApp']['schema_root']}/demo_data.sql"  
 end
 
 execute "Create DB" do
   command "mysql -u root -pP@ssw0rd -S /var/run/mysql-nateApp/mysqld.sock < #{node['nateApp']['schema_root']}/schema.sql"
+  notifies :run, "execute[Load_Demo_Data]", :immediately
+  not_if "mysql -S /var/run/mysql-nateApp/mysqld.sock -u #{node['nateApp']['database']['username']} -p#{node['nateApp']['database']['password']} #{node['nateApp']['database']['dbname']} -e 'describe presenters'"
 end
 
 
