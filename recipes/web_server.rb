@@ -1,8 +1,13 @@
+node.set['apache']['mpm'] = 'prefork'
+
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
 include_recipe "apache2::mod_proxy"
+include_recipe "apache2::mod_proxy_http"
 include_recipe "apache2::mod_proxy_balancer"
+include_recipe "apache2::mod_lbmethod_byrequests"
 include_recipe "apache2::mod_rewrite"
+include_recipe "apache2::mpm_prefork"
 
 include_recipe "php::module_mysql"
 

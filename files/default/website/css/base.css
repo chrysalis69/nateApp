@@ -23,3 +23,7 @@ body {
 .panel-presenter {
   margin-top: 20px;
 }
+
+.carousel-inner>.item>img{
+  margin: auto;
+}

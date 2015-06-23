@@ -76,11 +76,11 @@
         <h3 class="panel-title">Upload Presentation</h3>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="formPresentation" action="upload" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="inputPresentor" class="col-sm-2 control-label">Presentor</label>
             <div class="col-sm-10">
-            <select id="inputPresentor" class="form-control">
+            <select id="inputPresentor" class="form-control" name="inputPresentor">
 <?php
 $sql = "SELECT id, name, email FROM presenters";
 $result = $conn->query($sql);
@@ -97,13 +97,13 @@ if ($result->num_rows > 0) {
           <div class="form-group">
             <label for="inputDescription" class="col-sm-2 control-label">Description</label>
             <div class="col-sm-10">
-              <textarea class="form-control" rows="3" id="inputDescription"></textarea>
+              <textarea class="form-control" rows="3" id="inputDescription" name="inputDescription"></textarea>
             </div>
           </div>
           <div class="form-group">
             <label for="inputFile" class="col-sm-2 control-label">Presentation</label>
             <div class="col-sm-10">
-              <input type="file" id="inputFile">
+              <input type="file" id="inputFile" name="inputFile">
             </div>
           </div>
         <div class="form-group">
@@ -119,6 +119,16 @@ if ($result->num_rows > 0) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+    <script>
+        $(document).ready(function() { 
+            // bind 'myForm' and provide a simple callback function 
+            $('#formPresentation').ajaxForm(function() { 
+                alert("Presentation Uploaded!");
+                $('#formPresentation').resetForm(); 
+            }); 
+        }); 
+    </script>
   </body>
 </html>
 

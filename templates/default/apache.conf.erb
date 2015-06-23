@@ -19,13 +19,17 @@
 <% @content_servers.each do |content_server| %>
 <%= "                BalancerMember http://#{content_server}:8080" %>
 <% end %>
+		Require all granted
         </Proxy>
 
+	RewriteEngine on
+	RewriteRule "^/upload" "balancer://contentservers/upload.pl" [P]
+	RewriteRule "^/presentation/(.*)" "balancer://contentservers/presentations/$1" [P]        
 
-        ErrorLog <%= node['apache']['log_dir'] %>/error.log
+        ErrorLog <%= node['apache']['log_dir'] %>/<%= node['nateApp']['config'] %>-error.log
 
         LogLevel warn
 
-        CustomLog <%= node['apache']['log_dir'] %>/access.log combined
+        CustomLog <%= node['apache']['log_dir'] %>/<%= node['nateApp']['config'] %>-access.log combined
         ServerSignature Off
 </VirtualHost>

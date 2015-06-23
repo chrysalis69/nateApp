@@ -9,5 +9,31 @@ CREATE TABLE presenters
   primary key (id)
 );
 
+CREATE TABLE presentations
+(
+  guid    varchar(255) not null,
+  name    varchar(255) not null,
+  extension varchar(255) not null,
+  presenter integer not null,
+  description varchar(255),
+  filename varchar(255) not null,
+  pages integer DEFAULT -1,
+  primary key (guid)
+);
+
+CREATE TABLE converter
+(
+  extension varchar(255) not null,
+  command   varchar(255) not null,
+  primary key (extension)
+);
+
+CREATE TABLE jobs
+(
+  id integer auto_increment not null,
+  guid  varchar(255) not null,
+  state integer DEFAULT 1,
+  primary key (id)
+);
 grant all on <%= node['nateApp']['database']['dbname'] %>.* to '<%= node['nateApp']['database']['username'] %>'@'%' identified by '<%= node['nateApp']['database']['password'] %>';
 grant all on <%= node['nateApp']['database']['dbname'] %>.* to '<%= node['nateApp']['database']['username'] %>'@'localhost' identified by '<%= node['nateApp']['database']['password'] %>';

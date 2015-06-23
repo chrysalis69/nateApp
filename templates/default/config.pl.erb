@@ -1,9 +1,5 @@
-#!/usr/bin/perl
-use strict;
-
-my $database_name = "dbi::mysql::<%= node['nateApp']['database']['dbname'] %>"i;
-my $database_username = "<%= node['nateApp']['database']['username'] %>";
-my $database_password = "<%= node['nateApp']['database']['password'] %>";
-my $database_host = "<%= node['nateApp']['database']['host'] %>";
-
-my $upload_dir = "<%= node['nateApp']['content_root'] %>";
+database_name => 'DBI:mysql:database=<%= node['nateApp']['database']['dbname'] %>',
+database_username => '<%= node['nateApp']['database']['username'] %>',
+database_password => '<%= node['nateApp']['database']['password'] %>',
+database_host => '<%= node['nateApp']['database']['host'] %>',
+upload_dir => '<%= node['nateApp']['content_root'] %>/presentations',

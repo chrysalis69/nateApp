@@ -63,15 +63,21 @@ if ($result->num_rows > 0) {
           <h3><?php echo $row['name'];?></h3>
         </div><!-- /.col-lg-4 -->
         <div class="col-md-9">
-          <div class="col-md-4">
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+<?php
+   $presentationSQL = "SELECT* FROM presentations where presenter = ".$row['id'];
+   $presentationResult = $conn->query($presentationSQL);
+   if ($presentationResult->num_rows > 0){
+   while($presentationRow = $presentationResult->fetch_assoc()) {
+?>
+          <div class="col-md-6">
+            <img src="presentation/<?php echo $presentationRow['guid']; ?>/<?php echo $presentationRow['filename']; ?>;thumb" onclick="window.open('show.php?guid=<?php echo $presentationRow['guid']; ?>','<?php echo $presentationRow['filename']; ?>');"/>
+            <p><?php echo $presentationRow['description']; ?></p>
           </div>
-          <div class="col-md-4">
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          </div>
-          <div class="col-md-4">
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          </div>
+<?php
+ }
+}
+?>
+
         </div><!-- /.col-lg-8 -->
       </div><!-- /.row -->
 <?php 

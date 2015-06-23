@@ -1,0 +1,42 @@
+# Managed by Chef for <%= node['hostname'] %>
+<VirtualHost *:8080>
+        ServerAdmin <%= node['apache']['contact'] %>
+
+        DocumentRoot <%= node['nateApp']['content_root'] %>
+        <Directory />
+                Options FollowSymLinks
+                AllowOverride None
+        </Directory>
+        <Directory <%= node['nateApp']['content_root'] %>>
+                Options ExecCGI
+                AllowOverride None
+                Order allow,deny
+                allow from all
+                Require all granted
+                AddHandler cgi-script .pl
+        </Directory>
+
+	RewriteEngine on
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/thumb.png" !-f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);thumb$" "/default/$3.png"
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/thumb.png" -f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);thumb$" "/presentations/$1/thumb.png"
+
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/thumb-$4.png" !-f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);thumb-(\d+)$" "/default/$3.png"
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/thumb-$4.png" -f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);thumb-(\d+)$" "/presentations/$1/thumb-$4.png"
+	
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/page-$4.png" !-f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);page-(\d+)$" "/default/$3.png"
+	RewriteCond "%{DOCUMENT_ROOT}/presentations/$1/page-$4.png" -f
+        RewriteRule "^/presentations/(.*)/(.*)\.(.*);page-(\d+)$" "/presentations/$1/page-$4.png"
+
+        ErrorLog <%= node['apache']['log_dir'] %>/<%= node['nateApp']['config'] %>-content-error.log
+
+#        LogLevel warn
+        LogLevel alert rewrite:trace6
+
+        CustomLog <%= node['apache']['log_dir'] %>/<%= node['nateApp']['config'] %>-content-access.log combined
+        ServerSignature Off
+</VirtualHost>
