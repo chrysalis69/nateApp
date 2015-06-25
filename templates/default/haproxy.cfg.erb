@@ -25,7 +25,7 @@ listen nateAppWeb *:80
         option httpchk
         balance roundrobin
 <% @web_servers.each do |web_server| %>
-<%= "      server #{web_server} #{web_server}:80 check" %>
+<%= "      server #{web_server.name} #{web_server.ip}:80 check" %>
 <% end %>
 listen stats *:8080
 	stats enable
