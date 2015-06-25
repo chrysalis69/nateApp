@@ -1,4 +1,8 @@
-include_recipe "haproxy::install_package"
+#include_recipe "haproxy::install_package"
+
+package "haproxy" do
+  action :install
+end
 
 service "haproxy" do
   supports :restart => true, :reload => true
