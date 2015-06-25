@@ -1,5 +1,8 @@
 #include_recipe "haproxy::install_package"
 
+execute "apt-get update" do
+end
+
 package "haproxy" do
   action :install
 end

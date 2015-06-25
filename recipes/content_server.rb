@@ -1,6 +1,9 @@
 node.set['apache']['listen_ports'] = [80,8080]
 node.set['apache']['mpm'] = 'prefork'
 
+execute "apt-get update" do
+end
+
 include_recipe "apache2"
 include_recipe "apache2::mod_cgi"
 include_recipe "apache2::mod_rewrite"

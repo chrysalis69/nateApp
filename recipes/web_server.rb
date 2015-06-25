@@ -1,5 +1,8 @@
 node.set['apache']['mpm'] = 'prefork'
 
+execute "apt-get update" do
+end
+
 include_recipe "apache2"
 include_recipe "apache2::mod_php5"
 include_recipe "apache2::mod_proxy"
