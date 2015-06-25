@@ -12,3 +12,5 @@ depends          'apache2'
 depends          'php'
 depends          'haproxy'
 depends		 'apt'
+
+supports 'ubuntu'

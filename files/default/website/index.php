@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 ?>
-      <div class="row">
+      <div class="row well">
         <div class="col-md-3 presenter">
           <img class="img-circle" src="<?php echo $grav_preurl.md5(strtolower(trim($row['email']))).$grav_posturl; ?>" alt="Generic placeholder image" width="140" height="140">
           <h3><?php echo $row['name'];?></h3>

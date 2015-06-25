@@ -13,6 +13,9 @@ include_recipe "apache2::mod_rewrite"
 #package "ffmpeg" do
 #  action :install
 #end
+package "libclass-dbi-mysql-perl" do
+  action :install
+end
 
 package "jodconverter" do
   action :install
