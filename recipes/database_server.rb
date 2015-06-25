@@ -1,5 +1,7 @@
 
 #include_recipe "nateApp::_common_system"
+execute "apt-get update" do
+end
 
 mysql_service 'nateApp' do
   port '3306'
