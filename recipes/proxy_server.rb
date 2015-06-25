@@ -1,5 +1,10 @@
 include_recipe "haproxy::install_package"
 
+service "haproxy" do
+  supports :restart => true, :reload => true
+  action :enable
+end
+
 template "/etc/haproxy/haproxy.cfg" do
   source "haproxy.cfg.erb"
   variables({
