@@ -2,7 +2,7 @@ web_servers_ips = node['nateApp']['webservers']
 
 web_servers = []
 web_servers_ips.each do |web_server|
-  web_servers.push("#{web} #{web}:8080 check")
+  web_servers.push("#{web_server} #{web_server}:8080 check")
 end
 
 include_recipe "haproxy::install_package"
