@@ -3,6 +3,13 @@
 package "haproxy" do
   action :install
 end
+ruby_block "Enable HaProxy" do
+  block do
+    fe = Chef::Util::FileEdit.new("/etc/defaults/haproxy")
+    fe.(/ENABLED=0/,"ENABLED=1")
+    fe.write_file
+  end
+end
 
 service "haproxy" do
   supports :restart => true, :reload => true
