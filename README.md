@@ -1,11 +1,9 @@
 # nateApp-cookbook
 
-TODO: Enter the cookbook description here.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
-
+Only ubuntu 14.04 - didn't have enough time to test ;)
 ## Attributes
 
 <table>
@@ -25,18 +23,10 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### nateApp::default
+To get started get a copy of ChefDK (https://downloads.chef.io/chef-dk/) & Vagrant (http://www.vagrantup.com/downloads.html)
 
-Include `nateApp` in your node's `run_list`:
-
-```json
-{
-  "run_list": [
-    "recipe[nateApp::default]"
-  ]
-}
-```
+Clone git repo and run ``vagrant up``
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Stefan Coetzee (<stefan.coetzee@uct.ac.za>)
